@@ -2,8 +2,13 @@
 #include <iostream>
 #include <iomanip>
 
-void OrderBook::add_order(uint64_t order_id, uint64_t client_id, Side side,
-                          uint32_t price, uint32_t qty)
+
+void OrderBook::add_order(
+    uint64_t order_id, 
+    uint64_t client_id,
+    Side side,                
+    uint32_t price, 
+    uint32_t qty)
 {
     Order order{};
     order.order_id = order_id;
@@ -36,9 +41,13 @@ void OrderBook::add_order(uint64_t order_id, uint64_t client_id, Side side,
               << " " << qty << " @ " << (price / 100) << "." << std::setfill('0') << std::setw(2) << (price % 100) << "\n";
 }
 
+
+
 void OrderBook::print_book() const {
+
     std::cout << "\n--- Order Book ---\n";
     std::cout << "BIDS                  ASKS\n";
+    
     // Simplified print — we'll make it pretty later
     for (int i = PRICE_LEVELS-1; i >= 0; --i) {
         if (bids[i].total_qty > 0 || asks[i].total_qty > 0) {
@@ -46,6 +55,7 @@ void OrderBook::print_book() const {
                       << (i/100) << "." << std::setw(2) << std::setfill('0') << (i%100)
                       << " | "
                       << std::setw(8) << asks[i].total_qty << "\n";
+
         }
     }
 }
